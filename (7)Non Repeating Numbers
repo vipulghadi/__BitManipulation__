@@ -1,0 +1,17 @@
+ vector<int> singleNumber(vector<int> nums) 
+    {  vector<int>ans;
+       int xorVal=0;
+       int n1=0,n2=0;
+      
+       for(int x:nums) xorVal^=x;
+
+      int rsBit=xorVal & ~(xorVal-1);
+       for(int x:nums){
+           if(x&rsBit)n1^=x;
+           else n2^=x;
+       }
+       ans={n1,n2};
+       sort(ans.begin(),ans.end());
+       return ans;
+
+-----------------------------
