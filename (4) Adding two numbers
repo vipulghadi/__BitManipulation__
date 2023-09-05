@@ -1,0 +1,13 @@
+  int i=a.size()-1,j=b.size()-1;
+        string ans="";
+        int carry=0;
+        while(i>=0 || j>=0||carry){
+            int x=0,y=0;
+            if(i>=0)x=a[i]-48 ;
+            if(j>=0)y= b[j]-48;
+            ans= to_string((carry +x+y)%2)+ans;
+            carry=(carry+x+y)/2;
+            i--;j--;
+        }
+        return ans;
+------------------------------------------------------------------------------
