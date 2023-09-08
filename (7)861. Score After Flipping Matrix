@@ -1,0 +1,53 @@
+class Solution {
+public:
+    void flipRow(int row,vector<vector<int>>& grid)
+    {
+        for(int i=0;i<grid[0].size();i++) grid[row][i]=grid[row][i]==0?1:0;
+    }
+    void flipColumn(int col,vector<vector<int>>& grid)
+    {
+      for(int i=0;i<grid.size();i++) grid[i][col]=grid[i][col]==0?1:0;
+    }
+
+    bool canFlip(int col,vector<vector<int>>& grid)
+    {
+        int count=0;
+        for(int i=0;i<grid.size();i++) if(grid[i][col]==0)count++;
+        if(count>(grid.size()/2))return true;
+        return false;
+
+    }
+    
+    int matrixScore(vector<vector<int>>& grid) {
+        int ans=0;
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(j==0&&grid[i][j]==0)
+                {
+                    flipRow(i,grid);
+                }
+                else if(grid[i][j]==0 && canFlip(j,grid))
+                {
+                    flipColumn(j,grid);
+                }
+            }
+        }
+
+        for(int i=0;i<grid.size();i++)
+        {   
+            int num=0;
+            for(int j=0;j<grid[0].size();j++)
+            {
+               if(grid[i][j]==1)
+                  {
+                      num=num+(1<<(grid[0].size()-j-1));
+                  } 
+            }
+            ans+=num;
+        }
+
+        return ans;
+    }
+};
