@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------------------
+class Solution {
+public:
+    int ans=0;
+    void solve(int ind,vector<int>& nums,int &orVal,int cOr)
+    {  if(ind==nums.size())return ;
+        if((cOr | nums[ind]) ==orVal)ans++;
+        solve(ind+1,nums,orVal,(cOr | nums[ind]));
+        solve(ind+1,nums,orVal,cOr); 
+    }
+    int countMaxOrSubsets(vector<int>& nums) {
+        int orVal=0;
+        for(auto i:nums)orVal=(orVal | i);
+        solve(0,nums,orVal,0);
+        return ans;
+    }
+};
+-------------------------------------------------------------------------------------------------
