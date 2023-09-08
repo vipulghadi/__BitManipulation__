@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string>ans;
+    void add(int ind,char c)
+    {   int size=ans.size();
+        for(int i=0;i<size;i++)
+        {
+            string toAdd=ans[i];
+            toAdd[ind]=toupper(c); 
+            ans.push_back(toAdd);
+        }
+   
+    }
+    
+    vector<string> letterCasePermutation(string s) {
+        transform(s.begin(), s.end(), s.begin(), ::tolower); 
+        ans.push_back(s);
+        for(int i=0;i<s.size();i++)
+        {
+            if(isalpha(s[i]))
+            {
+                add(i,s[i]);
+            }
+        }
+        return ans;
+    }
+};
+-------------------------------------------------------------------------------------------------------
