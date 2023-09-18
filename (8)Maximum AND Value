@@ -1,0 +1,23 @@
+ int maxAND (int arr[], int N)
+    {
+         int res=0,mask=0;
+         for(int i=31;i>=0;i--)
+         {
+             int count=0;
+             mask= (1<<i) | res;
+             
+             for(int j=0;j<N;j++)
+             {
+                if((arr[j] & mask) == mask)count++; 
+             }
+             
+             if(count>=2)
+             {
+                 res= (mask | res);
+             }
+         }
+         
+         return res;
+         
+    }
+---------------------------------------------------------------------
